@@ -1,9 +1,7 @@
+module.exports = Phrase;
+
 String.prototype.reverse = function() {
     return Array.from(this).reverse().join("");
-};
-
-String.prototype.blank = function() {
-    return this.match(/^\s+$/g);
 };
 
 function Phrase(content) {
@@ -14,7 +12,11 @@ function Phrase(content) {
     };
     
     this.processedContent = function processedContent() {
-        return this.content.toLowerCase();
+        return this.letters().toLowerCase();
+    };
+    
+    this.letters = function letters() {
+        return Array.from(this.content).filter(c => c.match(/[a-z]/i)).join("");
     };
     
     this.palindrome = function palindrome() {
